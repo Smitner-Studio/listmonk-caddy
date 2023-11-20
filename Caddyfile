@@ -1,4 +1,8 @@
-:{$PORT}
-
-root * /srv
-file_server
+http:// {
+    reverse_proxy listmonk:9000 {
+        header_up Access-Control-Allow-Origin "https://smitner.studio"
+        header_up Access-Control-Allow-Methods "GET, POST, OPTIONS"
+        header_up Access-Control-Allow-Headers "DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range"
+        header_up Access-Control-Expose-Headers "Content-Length,Content-Range"
+    }
+}
